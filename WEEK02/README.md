@@ -12,7 +12,7 @@ https://colab.research.google.com/drive/1s0WEuKsTrCbVy15uqzBs9nfuX0Ks91CP?usp=sh
 
 
 
-## WEEK 02 10 JULY 2026##
+## WEEK 02 10 /JULY/ 2026 ##
 
 Latihan Library: Anda merupakan seorang AI DATA Analyst di KV Sepang.
 Anda perlu menganalisis data prestasi pelajar menggunakan Python. Gunakan library:
