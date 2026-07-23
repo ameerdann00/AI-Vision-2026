@@ -31,3 +31,21 @@ https://colab.research.google.com/drive/17yjMhAz2t_VGkQ0993rl4T7FHp00nSoh?usp=sh
 # OUTPUT #
 
 <img width="744" height="762" alt="Screenshot 2026-07-12 143025" src="https://github.com/user-attachments/assets/25f2afeb-9878-490a-9c42-d01b5275c709" />
+
+
+
+
+# TUGASAN 15/7/2026: #
+
+-Belajar tentang raspberry Pi Sensory kit via face to face and PDF given..
+
+# REFLEKSI #
+
+Hari ini saya belajar tentang: Raspberry Pi Pico W, sambungan sensor DHT22, MCP9700 dan LDR serta cara membaca data sensor menggunakan Python/CircuitPython.
+
+Perkara yang saya paling faham ialah: cara menyambungkan sensor kepada pin Pico W dan membaca nilai suhu, kelembapan dan cahaya yang dihantar dalam bentuk data CSV.
+
+Perkara yang saya masih kurang faham ialah: proses penghantaran data menggunakan MQTT dan cara model machine learning menggunakan data sensor untuk membuat ramalan.
+
+Saya akan meningkatkan pemahaman dengan: mencuba semula sambungan litar, menjalankan kod sensor secara sendiri dan membuat latihan membaca serta menganalisis data menggunakan pandas.
+
