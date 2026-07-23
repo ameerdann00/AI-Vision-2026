@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRON: Neon Pong</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#050816;
+    overflow:hidden;
+    font-family:Consolas, monospace;
+    color:#00f5ff;
+}
+
+/* ===== TOP HUD ===== */
+#hud{
+    position:fixed;
+    top:10px;
+    left:0;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    gap:60px;
+    z-index:10;
+    pointer-events:none;
+}
+
+.hud-box{
+    background:rgba(0,0,0,0.55);
+    border:2px solid #00f5ff;
+    border-radius:12px;
+    padding:8px 18px;
+    text-align:center;
+    box-shadow:0 0 15px #00f5ff;
+}
+
+.hud-title{
+    font-size:12px;
+    color:#8ffcff;
+    letter-spacing:2px;
+}
+
+.hud-value{
+    font-size:24px;
+    font-weight:bold;
+    text-shadow:0 0 10px #00f5ff;
+}
+
+#timer.warning{
+    color:#ff3b3b;
+    text-shadow:0 0 15px #ff3b3b;
+    animation:blink 0.6s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:0.35;}
+}
+
+/* ===== TITLE ===== */
+#title{
+    position:fixed;
+    top:85px;
+    width:100%;
+    text-align:center;
+    z-index:10;
+}
+
+#title h1{
+    font-size:42px;
+    letter-spacing:6px;
+    color:#00f5ff;
+    text-shadow:
+        0 0 10px #00f5ff,
+        0 0 20px #00f5ff,
+        0 0 40px #0088ff;
+}
+
+#title span{
+    color:#ff8c00;
+    text-shadow:
+        0 0 10px #ff8c00,
+        0 0 20px #ff8c00;
+}
+
+/* ===== CANVAS ===== */
+canvas{
+    display:block;
+    width:100vw;
+    height:100vh;
+}
+
+/* ===== OVERLOAD ===== */
+#overload{
+    position:fixed;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:72px;
+    font-weight:bold;
+    color:#ff8c00;
+    text-shadow:
+        0 0 20px #ff8c00,
+        0 0 40px #ff5500;
+    background:rgba(255,120,0,0.08);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.3s;
+    z-index:20;
+}
+
+/* ===== GAME OVER ===== */
+#gameover{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.88);
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    z-index:30;
+}
+
+#gameover h2{
+    font-size:72px;
+    color:#ff3b3b;
+    text-shadow:0 0 20px #ff3b3b;
+    margin-bottom:12px;
+}
+
+#gameover p{
+    font-size:28px;
+    margin-bottom:28px;
+    color:#8ffcff;
+}
+
+#gameover button{
+    padding:14px 28px;
+    border:none;
+    border-radius:10px;
+    background:#00f5ff;
+    color:#001018;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 0 20px #00f5ff;
+}
+
+#gameover button:hover{
+    transform:scale(1.05);
+}
+</style>
+</head>
+<body>
+
+<div id="hud">
+    <div class="hud-box">
+        <div class="hud-title">SCORE</div>
+        <div class="hud-value" id="score">0</div>
+    </div>
+
+    <div class="hud-box">
+        <div class="hud-title">TIME</div>
+        <div class="hud-value" id="timer">15:00</div>
+    </div>
+
+    <div class="hud-box">
+        <div class="hud-title">SYSTEM</div>
+        <div class="hud-value" style="color:#8ffcff">ONLINE</div>
+    </div>
+</div>
+
+<div id="title">
+    <h1>TRON <span>NEON PONG</span></h1>
+</div>
+
+<canvas id="game"></canvas>
+
+<div id="overload">ENERGY OVERLOAD</div>
+
+<div id="gameover">
+    <h2>CONNECTION LOST</h2>
+    <p>Final Score: <span id="finalScore">0</span></p>
+    <button onclick="location.reload()">REINITIALIZE GRID</button>
+</div>
+
+<script>
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+
+function resize(){
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+}
+resize();
+addEventListener('resize', resize);
+
+// ===== HUD =====
+const scoreEl = document.getElementById('score');
+const timerEl = document.getElementById('timer');
+const overloadEl = document.getElementById('overload');
+const gameoverEl = document.getElementById('gameover');
+const finalScoreEl = document.getElementById('finalScore');
+
+// ===== GAME STATE =====
+let score = 0;
+let timeLeft = 15 * 60;
+let gameEnded = false;
+
+// ===== PADDLE =====
+const paddle = {
+    width:180,
+    height:16,
+    x:innerWidth/2 - 90,
+    y:innerHeight - 60
+};
+
+// ===== BALL =====
+const ball = {
+    x:innerWidth/2,
+    y:innerHeight/2,
+    radius:11,
+    dx:6,
+    dy:-6,
+    speed:6,
+    trail:[]
+};
+
+// ===== CONTROL =====
+function movePaddle(clientX){
+    paddle.x = clientX - paddle.width/2;
+    if(paddle.x < 0) paddle.x = 0;
+    if(paddle.x + paddle.width > innerWidth)
+        paddle.x = innerWidth - paddle.width;
+}
+
+addEventListener('mousemove', e => movePaddle(e.clientX));
+
+addEventListener('touchmove', e => {
+    movePaddle(e.touches[0].clientX);
+    e.preventDefault();
+}, {passive:false});
+
+// ===== TIMER =====
+setInterval(()=>{
+    if(gameEnded) return;
+
+    timeLeft--;
+
+    const m = String(Math.floor(timeLeft/60)).padStart(2,'0');
+    const s = String(timeLeft%60).padStart(2,'0');
+    timerEl.textContent = `${m}:${s}`;
+
+    if(timeLeft <= 60){
+        timerEl.classList.add('warning');
+    }
+
+    if(timeLeft <= 0){
+        endGame();
+    }
+},1000);
+
+// ===== DRAW GRID =====
+function drawGrid(){
+    ctx.strokeStyle = 'rgba(0,245,255,0.12)';
+    ctx.lineWidth = 1;
+
+    // vertical perspective lines
+    for(let x=0; x<=innerWidth; x+=80){
+        ctx.beginPath();
+        ctx.moveTo(x, innerHeight);
+        ctx.lineTo(innerWidth/2 + (x-innerWidth/2)*0.25, innerHeight*0.35);
+        ctx.stroke();
+    }
+
+    // horizontal lines
+    for(let y=0; y<innerHeight; y+=55){
+        const scale = 1 - y/innerHeight;
+        const w = innerWidth * scale;
+        ctx.beginPath();
+        ctx.moveTo(innerWidth/2 - w/2, y);
+        ctx.lineTo(innerWidth/2 + w/2, y);
+        ctx.stroke();
+    }
+}
+
+// ===== DRAW PADDLE =====
+function drawPaddle(){
+    ctx.shadowColor = '#00f5ff';
+    ctx.shadowBlur = 25;
+    ctx.fillStyle = '#00f5ff';
+    ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+
+    // center line
+    ctx.fillStyle = '#bfffff';
+    ctx.fillRect(paddle.x + paddle.width/2 - 2, paddle.y, 4, paddle.height);
+
+    ctx.shadowBlur = 0;
+}
+
+// ===== DRAW BALL + TRAIL =====
+function drawBall(){
+    ball.trail.push({x:ball.x, y:ball.y});
+    if(ball.trail.length > 14) ball.trail.shift();
+
+    for(let i=0;i<ball.trail.length;i++){
+        const t = ball.trail[i];
+        const alpha = i / ball.trail.length;
+
+        ctx.beginPath();
+        ctx.arc(t.x, t.y, ball.radius * alpha, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(255,140,0,${alpha*0.5})`;
+        ctx.fill();
+    }
+
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI*2);
+    ctx.fillStyle = '#ff8c00';
+    ctx.shadowColor = '#ff8c00';
+    ctx.shadowBlur = 30;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+}
+
+// ===== OVERLOAD EFFECT =====
+function triggerOverload(){
+    overloadEl.style.opacity = '1';
+
+    setTimeout(()=>{
+        overloadEl.style.opacity = '0';
+    },900);
+}
+
+// ===== UPDATE =====
+function update(){
+    ball.x += ball.dx;
+    ball.y += ball.dy;
+
+    // walls
+    if(ball.x - ball.radius < 0 || ball.x + ball.radius > innerWidth){
+        ball.dx *= -1;
+    }
+
+    if(ball.y - ball.radius < 0){
+        ball.dy *= -1;
+    }
+
+    // paddle collision
+    if(
+        ball.y + ball.radius > paddle.y &&
+        ball.x > paddle.x &&
+        ball.x < paddle.x + paddle.width &&
+        ball.dy > 0
+    ){
+        const hit = (ball.x - (paddle.x + paddle.width/2)) / (paddle.width/2);
+
+        ball.speed *= 1.08; // acceleration
+        ball.dx = hit * ball.speed;
+        ball.dy = -Math.abs(ball.speed);
+
+        score++;
+        scoreEl.textContent = score;
+
+        // overload every 5 points
+        if(score % 5 === 0){
+            triggerOverload();
+        }
+    }
+
+    // miss
+    if(ball.y - ball.radius > innerHeight){
+        endGame();
+    }
+}
+
+// ===== DRAW =====
+function draw(){
+    ctx.clearRect(0,0,innerWidth,innerHeight);
+
+    // dark background
+    ctx.fillStyle = '#050816';
+    ctx.fillRect(0,0,innerWidth,innerHeight);
+
+    // glow center
+    const g = ctx.createRadialGradient(
+        innerWidth/2, innerHeight*0.45, 50,
+        innerWidth/2, innerHeight*0.45, innerWidth*0.5
+    );
+    g.addColorStop(0,'rgba(0,245,255,0.12)');
+    g.addColorStop(1,'rgba(0,245,255,0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0,0,innerWidth,innerHeight);
+
+    drawGrid();
+    drawPaddle();
+    drawBall();
+}
+
+// ===== GAME LOOP =====
+function loop(){
+    if(!gameEnded){
+        update();
+        draw();
+        requestAnimationFrame(loop);
+    }
+}
+loop();
+
+// ===== END GAME =====
+function endGame(){
+    gameEnded = true;
+    finalScoreEl.textContent = score;
+    gameoverEl.style.display = 'flex';
+}
+</script>
+</body>
+</html>

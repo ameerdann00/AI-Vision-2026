@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrapper">
+
+    <div class="header">
+        <h1>🐍 Snake Game</h1>
+        <p>Minimal Edition</p>
+    </div>
+
+    <div class="info">
+
+        <div class="card">
+            <span>Score</span>
+            <h2 id="score">0</h2>
+        </div>
+
+        <div class="card">
+            <span>High Score</span>
+            <h2 id="highScore">0</h2>
+        </div>
+
+    </div>
+
+    <div class="game">
+
+        <canvas id="gameCanvas"
+                width="500"
+                height="500">
+        </canvas>
+
+    </div>
+
+    <div class="menu">
+
+        <select id="mode">
+
+            <option value="classic">
+                🟢 Classic
+            </option>
+
+            <option value="speed">
+                🔥 Speed
+            </option>
+
+            <option value="ghost">
+                👻 Ghost
+            </option>
+
+        </select>
+
+    </div>
+
+    <div class="buttons">
+
+        <button id="startBtn">
+            ▶ Start
+        </button>
+
+        <button id="pauseBtn">
+            ⏸ Pause
+        </button>
+
+        <button id="restartBtn">
+            🔄 Restart
+        </button>
+
+    </div>
+
+    <div class="instructions">
+
+        <h3>Controls</h3>
+
+        <p>⬅ Left</p>
+        <p>➡ Right</p>
+        <p>⬆ Up</p>
+        <p>⬇ Down</p>
+        <p>SPACE = Pause</p>
+
+    </div>
+
+</div>
+
+<div id="gameOver" class="popup">
+
+    <div class="popup-content">
+
+        <h2>Game Over</h2>
+
+        <p>Your Score</p>
+
+        <h1 id="finalScore">
+            0
+        </h1>
+
+        <button id="playAgain">
+            Play Again
+        </button>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
