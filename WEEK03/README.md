@@ -7,9 +7,17 @@ CHATGPT VS GEMINI
 
 # 23 JULY 2026 #
 
-![Uploading AI CODE ASSISTANT MINI PROJECT TO BE THE BEST AI PROMPT ENGINEER .png…]()
+<img width="1024" height="1536" alt="AI CODE ASSISTANT MINI PROJECT TO BE THE BEST AI PROMPT ENGINEER " src="https://github.com/user-attachments/assets/c9a64a70-d6c3-47f7-b3b4-5f9a82ce6aa6" />
 
 
+£ REFLEKSI £
+Hari ini saya belajar tentang: penggunaan AI Code Assistant seperti ChatGPT untuk membantu membangunkan permainan HTML serta bagaimana HTML, CSS dan JavaScript digabungkan bagi menghasilkan permainan interaktif yang menarik.
+
+Perkara yang saya paling faham ialah: cara menyediakan prompt yang jelas untuk menghasilkan kod, membina antaramuka permainan, mengawal objek permainan menggunakan JavaScript serta menambah animasi dan kesan visual seperti neon glow.
+
+Perkara yang saya masih kurang faham ialah: logik JavaScript yang lebih kompleks seperti collision detection, sistem skor yang lebih canggih, pengoptimuman prestasi permainan dan penggunaan fungsi yang lebih modular.
+
+Saya akan meningkatkan pemahaman dengan: mencuba mengubah suai kod yang dijana oleh AI, membandingkan hasil daripada beberapa AI Code Assistant, membaca dokumentasi HTML, CSS dan JavaScript serta menghasilkan lebih banyak projek permainan sebagai latihan.
 
 
 
