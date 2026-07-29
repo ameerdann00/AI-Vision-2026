@@ -11,6 +11,7 @@ CHATGPT VS GEMINI
 
 
 £ REFLEKSI £
+
 Hari ini saya belajar tentang: penggunaan AI Code Assistant seperti ChatGPT untuk membantu membangunkan permainan HTML serta bagaimana HTML, CSS dan JavaScript digabungkan bagi menghasilkan permainan interaktif yang menarik.
 
 Perkara yang saya paling faham ialah: cara menyediakan prompt yang jelas untuk menghasilkan kod, membina antaramuka permainan, mengawal objek permainan menggunakan JavaScript serta menambah animasi dan kesan visual seperti neon glow.
@@ -18,6 +19,7 @@ Perkara yang saya paling faham ialah: cara menyediakan prompt yang jelas untuk m
 Perkara yang saya masih kurang faham ialah: logik JavaScript yang lebih kompleks seperti collision detection, sistem skor yang lebih canggih, pengoptimuman prestasi permainan dan penggunaan fungsi yang lebih modular.
 
 Saya akan meningkatkan pemahaman dengan: mencuba mengubah suai kod yang dijana oleh AI, membandingkan hasil daripada beberapa AI Code Assistant, membaca dokumentasi HTML, CSS dan JavaScript serta menghasilkan lebih banyak projek permainan sebagai latihan.
+
 
 
 
