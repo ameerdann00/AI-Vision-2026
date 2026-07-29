@@ -1,5 +1,3 @@
-<img width="1024" height="1536" alt="AI CODE ASSISTANT MINI PROJECT TO BE THE BEST AI PROMPT ENGINEER " src="https://github.com/user-attachments/assets/d1de632a-91b1-4d97-a93b-7d15e62567d2" /># 23 JULY 2026 # 
-
 # TUGASAN #
 
 <img width="1024" height="1536" alt="AI CODE ASSISTANT MINI PROJECT TO BE THE BEST AI PROMPT ENGINEER " src="https://github.com/user-attachments/assets/c9b5020f-62a5-4575-9acd-293efec5c9e2" />
