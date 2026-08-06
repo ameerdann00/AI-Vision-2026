@@ -47,3 +47,10 @@ Perkara yang saya paling faham ialah: cara membina antaramuka permainan, mengawa
 Perkara yang saya masih kurang faham ialah: logik JavaScript yang lebih kompleks seperti sistem skor lanjutan, kesan partikel dan pengoptimuman permainan.
 
 Saya akan meningkatkan pemahaman dengan: mencuba mengubah suai kod permainan sendiri, membaca dokumentasi JavaScript dan membuat lebih banyak latihan membina permainan HTML.
+
+
+# TUGASAN - JETSON AI CERT  #
+
+# 30 JULY 2026 #
+
+<img width="1119" height="787" alt="image" src="https://github.com/user-attachments/assets/321242cf-16cf-463d-8e8e-f11ce8319455" />
