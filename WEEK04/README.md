@@ -23,3 +23,14 @@ Saya akan meningkatkan pemahaman dengan: membuat lebih banyak latihan pengiraan 
 # TUGASAN 6 AUGUST 2026 #
 
 Latihan ANN - latihan dari modul
+
+https://colab.research.google.com/drive/1eVzXqY8TmZmiKW32oPW48w7bZC3xqcND?usp=sharing
+
+
+<img width="750" height="1000" alt="WhatsApp Image 2026-08-06 at 9 42 44 AM" src="https://github.com/user-attachments/assets/b33e4fe8-b81d-4aa0-94cd-ad5a7ddad426" />
+
+
+
+
+<img width="750" height="1000" alt="WhatsApp Image 2026-08-06 at 9 42 45 AM" src="https://github.com/user-attachments/assets/039271bc-df21-480d-8224-5adccd30a952" />
+
