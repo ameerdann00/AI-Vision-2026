@@ -1,6 +1,5 @@
 
 # ANN - NOTES - CONCEPT #
-# 30 JULY 2026 #
 
 
 
