@@ -12,6 +12,7 @@
 
 
 £ REFLEKSI £
+
 Hari ini saya belajar tentang: konsep asas dan objektif utama kursus KV-TRON ANN, fungsi modul DataLoader dalam PyTorch, penggunaan dataset standard seperti MNIST, serta perbezaan utama antara sistem rule-based dan learning-based.
 Perkara yang saya paling faham ialah: objektif kursus ini untuk membangunkan "otak" robot menggunakan ANN dan PyTorch, fungsi DataLoader untuk memuatkan dataset ke dalam model secara efisien (seperti batching dan shuffling), penggunaan dataset MNIST untuk melatih model mengenali angka tulisan tangan, serta jurang perbezaan di mana sistem rule-based bergantung kepada peraturan tetap manakala sistem learning-based belajar secara dinamik daripada data.
 Perkara yang saya masih kurang faham ialah: cara teknikal menulis kod PyTorch bagi mengendalikan DataLoader, proses di sebalik tabir bagaimana model ANN mengekstrak corak daripada imej MNIST semasa latihan, serta kriteria untuk menentukan bila sesuai menggunakan sistem rule-based berbanding learning-based dalam aplikasi robotik sebenar.
