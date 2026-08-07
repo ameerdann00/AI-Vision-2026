@@ -6,8 +6,7 @@
 
 
 
-
-# TUGASAN 6 AUGUST 2026 #
+# TUGASAN 30 JULY 2026 #
 
 Latihan ANN - latihan dari modul
 
