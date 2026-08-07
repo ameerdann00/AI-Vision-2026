@@ -1,6 +1,6 @@
 
 # INTRO TO ANN & TUGASAN, SIJIL KV TRON - ANN #
-# 7 AUGUST 2026 #
+# 6 AUGUST 2026 #
 
 
 <img width="1120" height="803" alt="image" src="https://github.com/user-attachments/assets/0361b477-55bb-4568-8a13-7c576ac52499" />
